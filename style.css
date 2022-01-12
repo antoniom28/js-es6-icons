@@ -37,7 +37,12 @@
     background-color: whitesmoke;
     box-shadow: 1px 1px 1px 1px gray;
     border-radius: 25%;
+    text-align: center;
 }
+
+/*.box p{
+    font-size: 1em;
+}*/
 
 i{
     font-size: 2em;

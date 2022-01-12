@@ -113,32 +113,29 @@ const cards = [
 	}
 ];
 
+generaCards();
 
-generaTutto();
-
-function generaTutto(){
+function generaCards(value){
+	let generaTutto = false;
+	if(value == undefined || value == "")
+		generaTutto = true;
+	console.log('value = ',value);
 	let container = document.getElementById('container-box');
+	container.innerHTML ="";
 	cards.forEach((card) => {
-		console.log(card.name);
-		container.innerHTML +=`
-		<div class="box">
-    		<i style="color:${card.color}" class="fas fa-${card.name}"></i>
-   			<p>${card.name.toUpperCase()}</p>
-		</div>
-		`;
+		//console.log(card.name);
+		if(value == card.type || generaTutto)
+			container.innerHTML +=`
+			<div class="box">
+				<i style="color:${card.color}" class="fas fa-${card.name}"></i>
+				<p>${card.name.toUpperCase()}</p>
+			</div>
+			`;
 	});
 }
 
-/*
-<div class="box">
-    <i style="color:orange" class="fas fa-cat"></i>
-    <p>CAT</p>
-</div>
-
-
-let studenti = ['ciao','p','franco'];
-
-studenti.forEach((element,index,array) =>{
-    console.log(element,index,array);
+const filterSelect = document.getElementById('filter');
+filterSelect.addEventListener('change',function(){
+	console.log('ho cambiato filtro',filterSelect.value);
+	generaCards(filterSelect.value);
 });
-*/
