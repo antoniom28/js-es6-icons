@@ -4,14 +4,25 @@
     margin: 0;
 }
 
-#select-filter{
+#select-filter {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: skyblue;
-    height: 5%;
+    height: 8%;
+    color: white;
+    font-weight: bold;
+}
+
+.all-filter{
+    margin: 0 10px;
 }
 
 .title{
-    height: 5%;
+    height: 8%;
+    line-height: 1;
+    margin-left: 10px;
+    font-size: 3em;
 }
 
 .container{
@@ -20,7 +31,7 @@
 
 #container-box{
     background-color: turquoise;
-    min-height: 90%;
+    min-height: 84%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
