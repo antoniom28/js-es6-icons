@@ -1,4 +1,4 @@
-const cards = [
+let cards = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -113,29 +113,71 @@ const cards = [
 	}
 ];
 
+let randomColor = false;
 generaCards();
-
-function generaCards(value){
-	let generaTutto = false;
-	if(value == undefined || value == "")
-		generaTutto = true;
-	console.log('value = ',value);
-	let container = document.getElementById('container-box');
-	container.innerHTML ="";
-	cards.forEach((card) => {
-		//console.log(card.name);
-		if(value == card.type || generaTutto)
-			container.innerHTML +=`
-			<div class="box">
-				<i style="color:${card.color}" class="fas fa-${card.name}"></i>
-				<p>${card.name.toUpperCase()}</p>
-			</div>
-			`;
-	});
-}
 
 const filterSelect = document.getElementById('filter');
 filterSelect.addEventListener('change',function(){
 	console.log('ho cambiato filtro',filterSelect.value);
 	generaCards(filterSelect.value);
 });
+
+const colorFilter = document.getElementById('colorFilter');
+colorFilter.addEventListener('change',function(){
+	console.log('ho cambiato filtro',colorFilter.value);
+	if(colorFilter.value == 'random')
+		randomColor = true;
+	else
+		randomColor = false;
+});
+
+function generaCards(value){
+	let generaTutto = false;
+	if(value == undefined || value == "")
+		generaTutto = true;
+
+	console.log('value = ',value);
+	let container = document.getElementById('container-box');
+	container.innerHTML ="";
+	cards.forEach((card) => {
+		let colore = card.color;
+		if(randomColor){
+			generaColoreCards();
+			colore = card.coloreRandom;}
+		else
+			colore = card.color;
+		//console.log(card.name);
+		if(value == card.type || generaTutto)
+			container.innerHTML +=`
+			<div class="box">
+				<i style="color:${colore}" class="fas fa-${card.name}"></i>
+				<p>${card.name.toUpperCase()}</p>
+			</div>
+			`;
+	});
+}
+
+function generaColoreCards(){
+	console.log(cards);
+	cards.forEach((card) => {
+		let colore ="";
+		for(let i = 0 ; i < 6; i++){
+			let random = Math.floor(Math.random()*16);
+			random = convertiInEsadecimale(random);
+			colore += random;
+		}
+		//console.log(colore);
+		card.coloreRandom = '#'+colore;
+	});
+}
+
+function convertiInEsadecimale(numero){
+	let numeroHex = numero.toString(16);
+	return numeroHex;
+}
+
+//#000000
+
+/*let numero = 15;
+let numeroHex = numero.toString(16);
+console.log(numeroHex);*/
