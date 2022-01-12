@@ -30,7 +30,7 @@ let cards = [
 	{
 		name: 'dragon',
 		prefix: 'fa-',
-		type: 'animal',
+		type: 'fat-animal',
 		family: 'fas',
 		color: 'orange'
 	},
@@ -44,7 +44,7 @@ let cards = [
 	{
 		name: 'hippo',
 		prefix: 'fa-',
-		type: 'animal',
+		type: 'fat-animal',
 		family: 'fas',
 		color: 'orange'
 	},
@@ -114,6 +114,7 @@ let cards = [
 ];
 
 let randomColor = false;
+generaOptions();
 generaCards();
 
 const filterSelect = document.getElementById('filter');
@@ -130,6 +131,28 @@ colorFilter.addEventListener('change',function(){
 	else
 		randomColor = false;
 });
+
+function generaOptions(){
+	let option = document.getElementById('filter');
+	allOptions = [];
+	cards.forEach((card) =>{
+		if(newOption(card.type,allOptions)){
+			allOptions.push(card.type);
+			option.innerHTML += `
+				<option value="${card.type}">${card.type}</option>
+			`;
+		}
+	});
+}
+
+function newOption(element,optionsArray){
+	//console.log('sono entrato nella funzione newOption');
+	//console.log(optionsArray);
+	for(let i=0; i<optionsArray.length; i++)
+		if(element == optionsArray[i])
+			return false;
+	return true;
+}
 
 function generaCards(value){
 	let generaTutto = false;
